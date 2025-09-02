@@ -8,25 +8,22 @@ extends Node2D
 var current_npc_instance: Node2D = null
 
 func _ready():
-	# GameManagerの状態変化シグナルに関数を接続
 	GameManager.state_changed.connect(_on_game_state_changed)
 	ui_manager.transaction_ended.connect(end_current_transaction)
 	ui_manager.sleep_requested.connect(GameManager.start_new_day)
-	# 最初の客を呼ぶ
 	_on_game_state_changed(GameManager.current_state)
-
-
 # ゲームの状態が変化したときに呼ばれる関数
 func _on_game_state_changed(new_state: GameManager.GameState):
 	match new_state:
 		GameManager.GameState.DAY_WAITING:
-			# ★UIの操作をUIManagerに依頼する形に変更
+			# UIManagerに朝のUI表示を依頼する
 			ui_manager.display_day_ui()
-			
 			spawn_next_npc()
+			
 		GameManager.GameState.NIGHT:
 			if is_instance_valid(current_npc_instance):
 				current_npc_instance.queue_free()
+			# UIManagerに夜のUI表示を依頼する
 			ui_manager.display_night_ui()
 # 次の客を生成して表示する関数
 func spawn_next_npc():

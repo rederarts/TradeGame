@@ -1,14 +1,26 @@
 # scripts/scene_specific/UIManager.gd
 extends CanvasLayer
-signal transaction_ended
+
 signal sleep_requested
+signal transaction_ended
 
 @export var trade_item_row_template: PackedScene
 
 @onready var npc_sell_list_container = $TradePanel/ScrollContainerSell/VBoxContainer
 @onready var npc_buy_list_container = $TradePanel/ScrollContainerBuy/VBoxContainer
 @onready var sleep_button = $SleepButton
-
+@onready var trade_panel = $TradePanel
+@onready var end_transaction_button = $EndTransactionButton
+# ★朝になったら呼ばれる関数 (新規追加)
+func display_day_ui():
+	trade_panel.show()
+	end_transaction_button.show()
+	sleep_button.hide()
+# ★夜になったら呼ばれる関数 (新規追加)
+func display_night_ui():
+	trade_panel.hide()
+	end_transaction_button.hide()
+	sleep_button.show()
 # display_trade_ui関数を更新
 func display_trade_ui(npc_instance: Node2D):
 	clear_trade_lists()
@@ -58,13 +70,11 @@ func display_trade_ui(npc_instance: Node2D):
 
 		npc_buy_list_container.add_child(new_row)
 
-
 func clear_trade_lists():
 	for child in npc_sell_list_container.get_children():
 		child.queue_free()
 	for child in npc_buy_list_container.get_children():
 		child.queue_free()
-
 # 「買う」ボタンが押されたときに実行される関数 (更新)
 func _on_buy_button_pressed(item_id: String, quantity: int, price: int, button: Button):
 	var total_cost = price * quantity
@@ -80,8 +90,6 @@ func _on_buy_button_pressed(item_id: String, quantity: int, price: int, button: 
 		button.disabled = true
 	else:
 		print("お金が足りません！")
-
-
 # 「売る」ボタンが押されたときに実行される関数 (新規追加)
 func _on_sell_button_pressed(item_id: String, quantity: int, price: int, button: Button):
 	var total_gain = price * quantity
@@ -108,23 +116,3 @@ func _on_end_transaction_button_pressed():
 # 「寝る」ボタンが押されたときに呼ばれる関数
 func _on_sleep_button_pressed():
 	sleep_requested.emit()
-
-# 朝になったら呼ばれる関数
-func display_day_ui():
-	print("朝になりました。")
-	# 取引UIと「見送る」ボタンを表示する
-	$TradePanel.show()
-	$EndTransactionButton.show()
-	
-	# 「寝る」ボタンを非表示にする
-	sleep_button.hide()
-
-# 夜になったら呼ばれる関数
-func display_night_ui():
-	print("夜になりました。")
-	# 取引UIと「見送る」ボタンを非表示にする
-	$TradePanel.hide()
-	$EndTransactionButton.hide() 
-	
-	# 「寝る」ボタンを表示する
-	sleep_button.show()

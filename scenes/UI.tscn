@@ -29,8 +29,9 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="TradePanel/ScrollContainerBuy"]
 layout_mode = 2
 
-[node name="EndTransactionButton" type="Button" parent="TradePanel"]
-layout_mode = 2
+[node name="EndTransactionButton" type="Button" parent="."]
+offset_right = 94.0
+offset_bottom = 40.0
 text = "取引を終える"
 
 [node name="SleepButton" type="Button" parent="."]
@@ -41,5 +42,5 @@ offset_right = 588.0
 offset_bottom = 631.0
 text = "寝る"
 
-[connection signal="pressed" from="TradePanel/EndTransactionButton" to="." method="_on_end_transaction_button_pressed"]
+[connection signal="pressed" from="EndTransactionButton" to="." method="_on_end_transaction_button_pressed"]
 [connection signal="pressed" from="SleepButton" to="." method="_on_sleep_button_pressed"]
