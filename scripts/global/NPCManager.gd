@@ -83,3 +83,11 @@ func generate_trade_offer(item_pool: Array[Dictionary]) -> Array[Dictionary]:
 				})
 	
 	return final_offer
+
+@export var npc_data_list: Array[NPCData] # インスペクターから全NPCDataリソースを登録
+
+# 登録されたNPCリストからランダムに一つを返す
+func get_random_npc_data() -> NPCData:
+	if npc_data_list.is_empty():
+		return null
+	return npc_data_list.pick_random()
