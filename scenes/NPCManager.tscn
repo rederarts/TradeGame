@@ -1,0 +1,12 @@
+[gd_scene load_steps=7 format=3 uid="uid://jv8dqihp5owx"]
+
+[ext_resource type="Script" uid="uid://2ev4gscqwqhx" path="res://scripts/global/NPCManager.gd" id="1_5khbq"]
+[ext_resource type="Script" uid="uid://xaqp0bgyfhvf" path="res://scripts/resources/NPCData.gd" id="2_bqi5c"]
+[ext_resource type="Resource" uid="uid://caf554xdf4kvg" path="res://resources/npcs/orion.tres" id="3_j0s6j"]
+[ext_resource type="Resource" uid="uid://dogbif7s06t02" path="res://resources/npcs/testNewOneHandSwordman1.tres" id="4_62sv5"]
+[ext_resource type="Resource" uid="uid://dwqwnwa0kk4up" path="res://resources/npcs/testOldOneHandSwordman1.tres" id="5_djmgf"]
+[ext_resource type="Resource" uid="uid://b71qa1r74nxov" path="res://resources/npcs/testOldWizard.tres" id="6_c27xk"]
+
+[node name="NPCManager" type="Node"]
+script = ExtResource("1_5khbq")
+npc_data_list = Array[ExtResource("2_bqi5c")]([ExtResource("3_j0s6j"), ExtResource("4_62sv5"), ExtResource("5_djmgf"), ExtResource("6_c27xk")])

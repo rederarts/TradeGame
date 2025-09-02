@@ -10,6 +10,7 @@ var current_npc_instance: Node2D = null
 func _ready():
 	# GameManagerの状態変化シグナルに関数を接続
 	GameManager.state_changed.connect(_on_game_state_changed)
+	ui_manager.transaction_ended.connect(end_current_transaction)
 	# ゲーム開始時に最初の客を呼ぶ
 	_on_game_state_changed(GameManager.current_state)
 

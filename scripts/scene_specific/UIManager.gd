@@ -1,5 +1,6 @@
 # scripts/scene_specific/UIManager.gd
 extends CanvasLayer
+signal transaction_ended
 
 @export var trade_item_row_template: PackedScene
 
@@ -98,3 +99,7 @@ func _on_sell_button_pressed(item_id: String, quantity: int, price: int, button:
 		print("アイテムが足りません！")
 		# 在庫がない場合もボタンを無効化しておく
 		button.disabled = true
+
+func _on_end_transaction_button_pressed():
+	# transaction_endedシグナルを発信する
+	transaction_ended.emit()
