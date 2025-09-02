@@ -1,51 +1,100 @@
 # scripts/scene_specific/UIManager.gd
 extends CanvasLayer
 
-# 取引アイテム1行分のUIテンプレートシーンをインスペクターから設定
 @export var trade_item_row_template: PackedScene
 
-# --- UIノードへの参照 ---
-# NPCが売るアイテムリストを表示するコンテナ
 @onready var npc_sell_list_container = $TradePanel/ScrollContainerSell/VBoxContainer
-# NPCが買うアイテムリストを表示するコンテナ
 @onready var npc_buy_list_container = $TradePanel/ScrollContainerBuy/VBoxContainer
 
-
-# NPCインスタンスを受け取り、取引UIを画面に表示するメイン関数
+# display_trade_ui関数を更新
 func display_trade_ui(npc_instance: Node2D):
-	# 最初に既存のリストをクリアする
 	clear_trade_lists()
 
 	# --- NPCの「売りたい」リストをUIに表示 ---
 	for item_info in npc_instance.current_sell_offer:
-		# 1. アイテムIDから完全なItemDataを取得
 		var item_id = item_info.get("item_id")
+		var quantity = item_info.get("quantity")
 		var item_data: ItemData = ItemDatabase.get_item_data(item_id)
 		
-		if item_data == null:
-			print("Error: ItemData not found for ID: ", item_id)
-			continue
+		if item_data == null: continue
 
-		# 2. テンプレートから新しい行UIをインスタンス化
 		var new_row = trade_item_row_template.instantiate()
+		var button = new_row.get_node("TradeButton")
 
-		# 3. 新しい行UIにデータを設定 (UIノードの名前は仮)
 		new_row.get_node("ItemNameLabel").text = item_data.item_name
-		new_row.get_node("QuantityLabel").text = "x" + str(item_info.get("quantity"))
-		# プレイヤーが「買い取る」ので、buyback_priceを表示
+		new_row.get_node("QuantityLabel").text = "x" + str(quantity)
 		new_row.get_node("PriceLabel").text = str(item_data.buyback_price) + " G"
-		new_row.get_node("TradeButton").text = "買う"
+		button.text = "買う"
+		
+		button.pressed.connect(
+			_on_buy_button_pressed.bind(item_id, quantity, item_data.buyback_price, button)
+		)
 
-		# 4. コンテナに行UIを追加
 		npc_sell_list_container.add_child(new_row)
 
-	# --- NPCの「買いたい」リストも同様に表示 ---
-	# (コードは省略しますが、"purchase_price"を使い、ボタンテキストを「売る」にするなど、同様の処理)
-	
+	# --- NPCの「買いたい」リストをUIに表示 ---
+	for item_info in npc_instance.current_buy_offer:
+		var item_id = item_info.get("item_id")
+		var quantity = item_info.get("quantity")
+		var item_data: ItemData = ItemDatabase.get_item_data(item_id)
 
-# 表示されている取引リストを全て削除する関数
+		if item_data == null: continue
+
+		var new_row = trade_item_row_template.instantiate()
+		var button = new_row.get_node("TradeButton")
+
+		new_row.get_node("ItemNameLabel").text = item_data.item_name
+		new_row.get_node("QuantityLabel").text = "x" + str(quantity)
+		# プレイヤーが「販売する」ので、purchase_priceを表示
+		new_row.get_node("PriceLabel").text = str(item_data.purchase_price) + " G"
+		button.text = "売る"
+
+		button.pressed.connect(
+			_on_sell_button_pressed.bind(item_id, quantity, item_data.purchase_price, button)
+		)
+
+		npc_buy_list_container.add_child(new_row)
+
+
 func clear_trade_lists():
 	for child in npc_sell_list_container.get_children():
 		child.queue_free()
 	for child in npc_buy_list_container.get_children():
 		child.queue_free()
+
+# 「買う」ボタンが押されたときに実行される関数 (更新)
+func _on_buy_button_pressed(item_id: String, quantity: int, price: int, button: Button):
+	var total_cost = price * quantity
+
+	if PlayerManager.has_enough_money(total_cost):
+		PlayerManager.subtract_money(total_cost)
+		
+		# ★コメントアウトを解除！
+		InventoryManager.add_item(item_id, quantity)
+
+		print(item_id, " を購入しました。")
+		# 購入成功後、ボタンを無効化して再度押せないようにする
+		button.disabled = true
+	else:
+		print("お金が足りません！")
+
+
+# 「売る」ボタンが押されたときに実行される関数 (新規追加)
+func _on_sell_button_pressed(item_id: String, quantity: int, price: int, button: Button):
+	var total_gain = price * quantity
+
+	# 1. アイテムを持っているかチェック
+	if InventoryManager.has_item(item_id, quantity):
+		# 2. インベントリからアイテムを削除
+		InventoryManager.remove_item(item_id, quantity)
+		
+		# 3. お金を受け取る
+		PlayerManager.add_money(total_gain)
+
+		print(item_id, " を売却しました。")
+		# 売却成功後、ボタンを無効化
+		button.disabled = true
+	else:
+		print("アイテムが足りません！")
+		# 在庫がない場合もボタンを無効化しておく
+		button.disabled = true
