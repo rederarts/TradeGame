@@ -1,11 +1,13 @@
 # scripts/scene_specific/UIManager.gd
 extends CanvasLayer
 signal transaction_ended
+signal sleep_requested
 
 @export var trade_item_row_template: PackedScene
 
 @onready var npc_sell_list_container = $TradePanel/ScrollContainerSell/VBoxContainer
 @onready var npc_buy_list_container = $TradePanel/ScrollContainerBuy/VBoxContainer
+@onready var sleep_button = $SleepButton
 
 # display_trade_ui関数を更新
 func display_trade_ui(npc_instance: Node2D):
@@ -103,3 +105,17 @@ func _on_sell_button_pressed(item_id: String, quantity: int, price: int, button:
 func _on_end_transaction_button_pressed():
 	# transaction_endedシグナルを発信する
 	transaction_ended.emit()
+	
+# 夜になったら呼ばれる関数
+func display_night_ui():
+	print("夜になりました。")
+	# 取引UIと「見送る」ボタンを非表示にする
+	$TradePanel.hide()
+	$EndTransactionButton.hide() 
+	
+	# 「寝る」ボタンを表示する
+	sleep_button.show()
+
+# 「寝る」ボタンが押されたときに呼ばれる関数
+func _on_sleep_button_pressed():
+	sleep_requested.emit()

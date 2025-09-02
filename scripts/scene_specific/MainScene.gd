@@ -11,7 +11,8 @@ func _ready():
 	# GameManagerの状態変化シグナルに関数を接続
 	GameManager.state_changed.connect(_on_game_state_changed)
 	ui_manager.transaction_ended.connect(end_current_transaction)
-	# ゲーム開始時に最初の客を呼ぶ
+	ui_manager.sleep_requested.connect(GameManager.start_new_day)
+	# 最初の客を呼ぶ
 	_on_game_state_changed(GameManager.current_state)
 
 
@@ -19,14 +20,16 @@ func _ready():
 func _on_game_state_changed(new_state: GameManager.GameState):
 	match new_state:
 		GameManager.GameState.DAY_WAITING:
-			# 客待ち状態なら、次の客をスポーンさせる
+			# ★朝になったらUIを元に戻す処理を追加
+			$UI/TradePanel.show()
+			$UI/EndTransactionButton.show()
+			$UI/SleepButton.hide()
+			
 			spawn_next_npc()
 		GameManager.GameState.NIGHT:
-			# 夜になったら、NPCを消してUIを更新
 			if is_instance_valid(current_npc_instance):
 				current_npc_instance.queue_free()
-			ui_manager.display_night_ui() # UIManagerに夜用UI表示を依頼 (後で実装)
-
+			ui_manager.display_night_ui()
 
 # 次の客を生成して表示する関数
 func spawn_next_npc():
