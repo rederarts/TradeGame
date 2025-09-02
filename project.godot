@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 GameManager="*res://scripts/global/GameManager.gd"
 InventoryManager="*res://scripts/global/InventoryManager.gd"
-ItemDatabase="*res://scripts/global/ItemDatabase.gd"
 MemoSystem="*res://scripts/global/MemoSystem.gd"
 PlayerManager="*res://scripts/global/PlayerManager.gd"
 NPCManager="*res://scenes/NPCManager.tscn"
+ItemDatabase="*res://scenes/ItemDatabase.tscn"

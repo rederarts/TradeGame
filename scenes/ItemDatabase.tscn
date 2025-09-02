@@ -1,0 +1,11 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqnw8ipav6pwt"]
+
+[ext_resource type="Script" uid="uid://1mq8go4xpkmh" path="res://scripts/global/ItemDatabase.gd" id="1_f0mgf"]
+[ext_resource type="Script" uid="uid://du1kirunou2h4" path="res://scripts/resources/ItemData.gd" id="2_gmc7g"]
+[ext_resource type="Resource" uid="uid://77d1e8nasl5v" path="res://resources/Items/ancient_steel_on_handed_sword.tres" id="3_o3b0c"]
+[ext_resource type="Resource" uid="uid://cu7f62v2h5s8d" path="res://resources/Items/green_magic_stone.tres" id="4_kio3p"]
+[ext_resource type="Resource" uid="uid://j7q7ie8jk2dm" path="res://resources/Items/rusty_sword.tres" id="5_cgqmo"]
+
+[node name="ItemDatabase" type="Node"]
+script = ExtResource("1_f0mgf")
+item_data_list = Array[ExtResource("2_gmc7g")]([ExtResource("3_o3b0c"), ExtResource("4_kio3p"), ExtResource("5_cgqmo")])
