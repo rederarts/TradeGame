@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0t4jwggxulvc"]
+
+[ext_resource type="Script" uid="uid://cpy3jw50awmfe" path="res://scripts/scene_specific/UIManager.gd" id="1_dj8aq"]
+[ext_resource type="PackedScene" uid="uid://cpq3phg2yg2m5" path="res://scenes/TradeItemRow.tscn" id="2_ro3t7"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_dj8aq")
+trade_item_row_template = ExtResource("2_ro3t7")
+
+[node name="TradePanel" type="PanelContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="TradePanel"]
+layout_mode = 2
+
+[node name="ScrollContainerSell" type="ScrollContainer" parent="TradePanel"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TradePanel/ScrollContainerSell"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="TradePanel"]
+layout_mode = 2
+
+[node name="ScrollContainerBuy" type="ScrollContainer" parent="TradePanel"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TradePanel/ScrollContainerBuy"]
+layout_mode = 2

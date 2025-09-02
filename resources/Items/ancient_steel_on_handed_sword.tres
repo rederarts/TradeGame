@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://77d1e8nasl5v"]
+
+[ext_resource type="Script" uid="uid://du1kirunou2h4" path="res://scripts/resources/ItemData.gd" id="1_jcghe"]
+
+[resource]
+script = ExtResource("1_jcghe")
+item_name = "古の鋼の剣"
+description = "迷宮や遺跡でそれなりに見つかる、大昔の鋼の片手剣。
+
+新米の冒険者が戦いに慣れてきたら買う武器として定番。鍛冶屋が売る一番安い武器よりもかなり強力。
+
+冒険者に聞くと、迷宮を徘徊する全身鎧を着た怪物がよく使っているらしい。"
+buyback_price = 100
+purchase_price = 200
+grid_size = Vector2i(1, 2)
+depth = 1
+volume = 1
+is_stackable = false
+max_stack_count = 1
+knowledge_descriptions = {
+0: "まだ何もわかっていない。"
+}
+metadata/_custom_type_script = "uid://du1kirunou2h4"

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://cu7f62v2h5s8d"]
+
+[ext_resource type="Script" uid="uid://du1kirunou2h4" path="res://scripts/resources/ItemData.gd" id="1_1rdws"]
+
+[resource]
+script = ExtResource("1_1rdws")
+item_name = "緑色の魔石"
+description = "迷宮や遺跡でよく見つかる、錆びた剣。以前そこで戦っただれかの落とし物。
+
+ひどく錆びているのでもう武器として使うことはできないだろう。
+鍛冶屋なら活用するかもしれない。"
+buyback_price = 140
+purchase_price = 220
+grid_size = Vector2i(1, 1)
+depth = 1
+volume = 1
+is_stackable = false
+max_stack_count = 1
+knowledge_descriptions = {
+0: "まだ何もわかっていない。"
+}
+metadata/_custom_type_script = "uid://du1kirunou2h4"

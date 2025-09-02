@@ -1,0 +1,11 @@
+取引ルールファイルでconditionsに登録するキー（その説明）と値
+
+NPC_CATEGORY_MAIN (大別した職業)　冒険者、魔石加工屋、鍛冶屋、薬草育て屋、錬金術師、採掘屋
+NPC_CATEGORY_SUB (職業の中での役職)　剣士、魔法使い、格闘家
+NPC_CATEGORY_SPEC (専門)　片手剣使い、大剣使い、短剣使い
+NPC_CATEGORY_LEVEL (練度)　新米、熟練
+
+取引ルールファイルでItem Poolに登録するキー
+
+item_id 
+appearance_chance

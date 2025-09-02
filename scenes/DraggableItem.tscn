@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpysqgs4cxp8g"]
+
+[ext_resource type="Script" uid="uid://cxl2c2d1ml87v" path="res://scripts/scene_specific/DraggableItem.gd" id="1_66nxq"]
+
+[node name="DraggableItem" type="Node2D"]
+script = ExtResource("1_66nxq")

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://j7q7ie8jk2dm"]
+
+[ext_resource type="Script" uid="uid://du1kirunou2h4" path="res://scripts/resources/ItemData.gd" id="1_6c2ns"]
+
+[resource]
+script = ExtResource("1_6c2ns")
+item_name = "錆びた剣"
+description = "迷宮や遺跡でよく見つかる、錆びた剣。以前そこで戦っただれかの落とし物。
+
+ひどく錆びているのでもう武器として使うことはできないだろう。
+鍛冶屋なら活用するかもしれない。"
+buyback_price = 40
+purchase_price = 80
+grid_size = Vector2i(1, 2)
+depth = 1
+volume = 1
+is_stackable = false
+max_stack_count = 1
+knowledge_descriptions = {
+0: "まだ何もわかっていない。"
+}
+metadata/_custom_type_script = "uid://du1kirunou2h4"
