@@ -20,17 +20,14 @@ func _ready():
 func _on_game_state_changed(new_state: GameManager.GameState):
 	match new_state:
 		GameManager.GameState.DAY_WAITING:
-			# ★朝になったらUIを元に戻す処理を追加
-			$UI/TradePanel.show()
-			$UI/EndTransactionButton.show()
-			$UI/SleepButton.hide()
+			# ★UIの操作をUIManagerに依頼する形に変更
+			ui_manager.display_day_ui()
 			
 			spawn_next_npc()
 		GameManager.GameState.NIGHT:
 			if is_instance_valid(current_npc_instance):
 				current_npc_instance.queue_free()
 			ui_manager.display_night_ui()
-
 # 次の客を生成して表示する関数
 func spawn_next_npc():
 	# NPCManagerからランダムなNPCデータを取得 (後でNPCManagerにこの関数を追加)

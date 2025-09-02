@@ -105,7 +105,20 @@ func _on_sell_button_pressed(item_id: String, quantity: int, price: int, button:
 func _on_end_transaction_button_pressed():
 	# transaction_endedシグナルを発信する
 	transaction_ended.emit()
+# 「寝る」ボタンが押されたときに呼ばれる関数
+func _on_sleep_button_pressed():
+	sleep_requested.emit()
+
+# 朝になったら呼ばれる関数
+func display_day_ui():
+	print("朝になりました。")
+	# 取引UIと「見送る」ボタンを表示する
+	$TradePanel.show()
+	$EndTransactionButton.show()
 	
+	# 「寝る」ボタンを非表示にする
+	sleep_button.hide()
+
 # 夜になったら呼ばれる関数
 func display_night_ui():
 	print("夜になりました。")
@@ -115,7 +128,3 @@ func display_night_ui():
 	
 	# 「寝る」ボタンを表示する
 	sleep_button.show()
-
-# 「寝る」ボタンが押されたときに呼ばれる関数
-func _on_sleep_button_pressed():
-	sleep_requested.emit()
