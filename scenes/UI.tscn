@@ -1,46 +1,208 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0t4jwggxulvc"]
+[gd_scene load_steps=10 format=3 uid="uid://b0t4jwggxulvc"]
 
 [ext_resource type="Script" uid="uid://cpy3jw50awmfe" path="res://scripts/scene_specific/UIManager.gd" id="1_dj8aq"]
 [ext_resource type="PackedScene" uid="uid://cpq3phg2yg2m5" path="res://scenes/TradeItemRow.tscn" id="2_ro3t7"]
+[ext_resource type="Texture2D" uid="uid://rkdy4uwmdms7" path="res://assets/images/background/カウンター（まともな画像を用意するまでの手書き画像）.png" id="3_75u2n"]
+[ext_resource type="Texture2D" uid="uid://cx0srexs06tg" path="res://assets/images/background/吹き出し（仮）.png" id="4_3wlde"]
+[ext_resource type="Texture2D" uid="uid://csm0j5ssl68rk" path="res://assets/images/characters/立ち絵NoImage（背景透過）.png" id="4_xpksx"]
+[ext_resource type="Texture2D" uid="uid://bn0c2v411qnul" path="res://assets/images/background/吹き出し（仮）(暗いバージョン).png" id="5_xpksx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ukj8e"]
+texture = ExtResource("4_3wlde")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w7enk"]
+content_margin_left = 15.0
+content_margin_right = 15.0
+texture = ExtResource("4_3wlde")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aputy"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+texture = ExtResource("5_xpksx")
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_dj8aq")
 trade_item_row_template = ExtResource("2_ro3t7")
 
-[node name="TradePanel" type="PanelContainer" parent="."]
+[node name="BackGround" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_75u2n")
+
+[node name="VisitUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="TradePanel"]
-layout_mode = 2
+[node name="NPCImage" type="TextureRect" parent="VisitUI"]
+layout_mode = 0
+offset_left = 303.0
+offset_top = 101.0
+offset_right = 868.0
+offset_bottom = 431.0
+texture = ExtResource("4_xpksx")
 
-[node name="ScrollContainerSell" type="ScrollContainer" parent="TradePanel"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TradePanel/ScrollContainerSell"]
-layout_mode = 2
-
-[node name="Label2" type="Label" parent="TradePanel"]
-layout_mode = 2
-
-[node name="ScrollContainerBuy" type="ScrollContainer" parent="TradePanel"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TradePanel/ScrollContainerBuy"]
-layout_mode = 2
-
-[node name="EndTransactionButton" type="Button" parent="."]
-offset_right = 94.0
-offset_bottom = 40.0
+[node name="EndTransactionButton" type="Button" parent="VisitUI"]
+layout_mode = 0
+offset_left = 837.0
+offset_top = 594.0
+offset_right = 1025.0
+offset_bottom = 640.0
 text = "取引を終える"
 
-[node name="SleepButton" type="Button" parent="."]
+[node name="MonologueWindow" type="TextureRect" parent="VisitUI"]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 428.0
+offset_right = 1026.0
+offset_bottom = 578.0
+texture = ExtResource("4_3wlde")
+
+[node name="ShopkeeperName" type="Label" parent="VisitUI/MonologueWindow"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 844.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0.045864, 0.402531, 9.62615e-08, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
+text = "プレイヤーが決めた名前"
+
+[node name="ShopkeeperDialogue" type="Label" parent="VisitUI/MonologueWindow"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 38.0
+offset_right = 852.0
+offset_bottom = 139.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
+text = "ふん。たこ焼きなら年に一度どこからともなく現れる巨大タコの討伐戦の後に周囲の町のあらゆる店で買えるぞ。おすすめの店はサバ威・・・なんとかだ。たしか、普通の日も面白いものを取り扱ってる。「スライムで作ったコイン」で買い物をするとその「面白い商品」をみせてくれるらしいぞ。
+※このテキストはゲーム制作中にレイアウトを確認するために仮入力したものです。このゲームの内容とは関係ありません。"
+autowrap_mode = 2
+
+[node name="NPCDialogueWindow" type="TextureRect" parent="VisitUI"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 173.0
+offset_right = 471.0
+offset_bottom = 395.0
+texture = ExtResource("4_3wlde")
+expand_mode = 1
+
+[node name="TalkNPCName" type="Label" parent="VisitUI/NPCDialogueWindow"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 23.0
+offset_right = 429.0
+offset_bottom = 53.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+text = "にわかゲーム制作者のレデラ"
+
+[node name="NPCDialogue" type="Label" parent="VisitUI/NPCDialogueWindow"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 50.0
+offset_right = 426.0
+offset_bottom = 193.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "どうも。鉄火丼が食べたくて来ました。
+売ってるかな？
+
+売ってるわけないだろ！！！
+このテキストはゲーム制作中にレイアウトなどを確認するために仮入力したものです。特に意味はありません。"
+autowrap_mode = 2
+
+[node name="TabBuyAndSell" type="TabContainer" parent="VisitUI"]
+layout_mode = 0
+offset_left = 652.0
+offset_top = 33.0
+offset_right = 1119.0
+offset_bottom = 384.0
+theme_override_colors/font_unselected_color = Color(0.362829, 0.362829, 0.362829, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_styles/panel = SubResource("StyleBoxTexture_ukj8e")
+theme_override_styles/tab_selected = SubResource("StyleBoxTexture_w7enk")
+theme_override_styles/tab_unselected = SubResource("StyleBoxTexture_aputy")
+current_tab = 1
+
+[node name="客が売りたいアイテムを確認する" type="VBoxContainer" parent="VisitUI/TabBuyAndSell"]
 visible = false
-offset_left = 551.0
-offset_top = 600.0
-offset_right = 588.0
-offset_bottom = 631.0
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Control" type="Control" parent="VisitUI/TabBuyAndSell/客が売りたいアイテムを確認する"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VisitUI/TabBuyAndSell/客が売りたいアイテムを確認する/Control"]
+layout_mode = 2
+offset_left = 15.0
+offset_top = 28.0
+offset_right = 442.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+text = "お客さんが売りたいと思っているアイテム"
+
+[node name="BuyItemScrollContainer" type="ScrollContainer" parent="VisitUI/TabBuyAndSell/客が売りたいアイテムを確認する/Control"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 61.0
+offset_right = 447.0
+offset_bottom = 283.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VisitUI/TabBuyAndSell/客が売りたいアイテムを確認する/Control/BuyItemScrollContainer"]
+layout_mode = 2
+
+[node name="客が買いたいアイテムを確認する" type="VBoxContainer" parent="VisitUI/TabBuyAndSell"]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Control" type="Control" parent="VisitUI/TabBuyAndSell/客が買いたいアイテムを確認する"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VisitUI/TabBuyAndSell/客が買いたいアイテムを確認する/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.043
+offset_left = 16.0
+offset_top = 26.0
+offset_right = 436.919
+offset_bottom = 71.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "お客さんが売りたいと考えているアイテムを確認する"
+
+[node name="SellScrollContainer" type="ScrollContainer" parent="VisitUI/TabBuyAndSell/客が買いたいアイテムを確認する/Control"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 53.0
+offset_right = 446.0
+offset_bottom = 283.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VisitUI/TabBuyAndSell/客が買いたいアイテムを確認する/Control/SellScrollContainer"]
+layout_mode = 2
+
+[node name="DayEndUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SleepButton" type="Button" parent="DayEndUI"]
+visible = false
+layout_mode = 0
+offset_left = 489.0
+offset_top = 413.0
+offset_right = 681.0
+offset_bottom = 467.0
 text = "寝る"
 
-[connection signal="pressed" from="EndTransactionButton" to="." method="_on_end_transaction_button_pressed"]
-[connection signal="pressed" from="SleepButton" to="." method="_on_sleep_button_pressed"]
+[connection signal="pressed" from="VisitUI/EndTransactionButton" to="." method="_on_end_transaction_button_pressed"]
+[connection signal="pressed" from="DayEndUI/SleepButton" to="." method="_on_sleep_button_pressed"]

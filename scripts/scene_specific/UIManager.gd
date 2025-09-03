@@ -6,11 +6,12 @@ signal transaction_ended
 
 @export var trade_item_row_template: PackedScene
 
-@onready var npc_sell_list_container = $TradePanel/ScrollContainerSell/VBoxContainer
-@onready var npc_buy_list_container = $TradePanel/ScrollContainerBuy/VBoxContainer
-@onready var sleep_button = $SleepButton
+@onready var npc_sell_list_container = $VisitUI/TabBuyAndSell/客が売りたいアイテムを確認する/Control/BuyItemScrollContainer/VBoxContainer
+@onready var npc_buy_list_container = $VisitUI/TabBuyAndSell/客が買いたいアイテムを確認する/Control/SellScrollContainer/VBoxContainer
+@onready var sleep_button = $DayEndUI/SleepButton
 @onready var trade_panel = $TradePanel
-@onready var end_transaction_button = $EndTransactionButton
+@onready var end_transaction_button = $VisitUI/EndTransactionButton
+
 # ★朝になったら呼ばれる関数 (新規追加)
 func display_day_ui():
 	trade_panel.show()
@@ -21,10 +22,9 @@ func display_night_ui():
 	trade_panel.hide()
 	end_transaction_button.hide()
 	sleep_button.show()
-# display_trade_ui関数を更新
+# display_trade_ui関数
 func display_trade_ui(npc_instance: Node2D):
 	clear_trade_lists()
-
 	# --- NPCの「売りたい」リストをUIに表示 ---
 	for item_info in npc_instance.current_sell_offer:
 		var item_id = item_info.get("item_id")
@@ -45,7 +45,7 @@ func display_trade_ui(npc_instance: Node2D):
 			_on_buy_button_pressed.bind(item_id, quantity, item_data.buyback_price, button)
 		)
 
-		npc_sell_list_container.add_child(new_row)
+		npc_sell_list_container.call_deferred("add_child", new_row)
 
 	# --- NPCの「買いたい」リストをUIに表示 ---
 	for item_info in npc_instance.current_buy_offer:
@@ -68,7 +68,7 @@ func display_trade_ui(npc_instance: Node2D):
 			_on_sell_button_pressed.bind(item_id, quantity, item_data.purchase_price, button)
 		)
 
-		npc_buy_list_container.add_child(new_row)
+		npc_buy_list_container.call_deferred("add_child", new_row)
 
 func clear_trade_lists():
 	for child in npc_sell_list_container.get_children():
