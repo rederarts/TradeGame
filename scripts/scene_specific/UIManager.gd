@@ -67,15 +67,14 @@ func display_trade_ui(npc_instance: Node2D):
 	var sell_offer = npc_instance.current_sell_offer
 	var buy_offer = npc_instance.current_buy_offer
 
-	# --- ★ここからが新しいロジック ---
-	# 1. 売買リストが両方とも空の場合
+	#  売買リストが両方とも空の場合
 	if sell_offer.is_empty() and buy_offer.is_empty():
 		empty_sell_message_label.text = "今日は特に用はないんだ。また来るよ。"
 		empty_sell_message_label.show()
 		empty_buy_message_label.hide() # 念のため非表示
 		return # ★ここで処理を終了
 
-	# 2. 売りたいリストが空の場合
+	#  売りたいリストが空の場合
 	if sell_offer.is_empty():
 		empty_sell_message_label.text = "今日は売りたいアイテムはなくて、買いに来たんだ"
 		empty_sell_message_label.show()
@@ -92,7 +91,7 @@ func display_trade_ui(npc_instance: Node2D):
 			new_row.pressed.connect(_on_trade_item_button_pressed.bind(item_info, "BUY"))
 			npc_sell_list_container.call_deferred("add_child", new_row)
 
-	# 3. 買いたいリストが空の場合
+	#  買いたいリストが空の場合
 	if buy_offer.is_empty():
 		empty_buy_message_label.text = "今日は買おうと思って要るアイテムはなくて、売りに来たんだ"
 		empty_buy_message_label.show()
