@@ -9,4 +9,6 @@ category_main = &"冒険者"
 category_sub = &"剣士"
 category_spec = &"片手剣"
 category_level = &"新米"
+individual_sell_pool = Array[Dictionary]([])
+individual_buy_pool = Array[Dictionary]([])
 metadata/_custom_type_script = "uid://xaqp0bgyfhvf"

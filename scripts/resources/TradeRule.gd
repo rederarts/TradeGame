@@ -24,7 +24,7 @@ class_name TradeRule
 ## --- item_poolの構造の参考 ---
 # [
 #     {
-#         "item_id": "item_database_key",  # ItemDatabaseで管理するID
+#         "item_id": "res://resources/Items/アイテムの名前.tres", # ItemDatabaseで管理するID
 #         "appearance_chance": 1.0,        # 1.0 = 100%
 #         "min_quantity": 1,
 #         "max_quantity": 1

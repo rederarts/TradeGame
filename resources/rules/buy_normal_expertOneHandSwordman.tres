@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="TradeRule" load_steps=2 format=3 uid="uid://bwxwwy7yxpxno"]
+
+[ext_resource type="Script" uid="uid://c3rme2wpwg1ee" path="res://scripts/resources/TradeRule.gd" id="1_3ni70"]
+
+[resource]
+script = ExtResource("1_3ni70")
+rule_name = "熟練片手剣士による通常の購入のルール"
+priority = 10
+conditions = Array[Dictionary]([{
+"type": "NPC_CATEGORY_MAIN",
+"value": "冒険者"
+}, {
+"type": "NPC_CATEGORY_SUB",
+"value": "剣士"
+}, {
+"type": "NPC_CATEGORY_SPEC",
+"value": "片手剣"
+}, {
+"type": "NPC_CATEGORY_LEVEL",
+"value": "熟練"
+}])
+action_type = &"OFFER_TO_BUY"
+item_pool = Array[Dictionary]([{
+"appearance_chance": 0.01,
+"item_id": "res://resources/Items/ancient_steel_on_handed_sword.tres",
+"max_quantity": 1.0,
+"min_quantity": 1.0
+}])
+metadata/_custom_type_script = "uid://c3rme2wpwg1ee"

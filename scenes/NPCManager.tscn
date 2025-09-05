@@ -1,12 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://jv8dqihp5owx"]
+[gd_scene load_steps=13 format=3 uid="uid://jv8dqihp5owx"]
 
 [ext_resource type="Script" uid="uid://2ev4gscqwqhx" path="res://scripts/global/NPCManager.gd" id="1_5khbq"]
 [ext_resource type="Script" uid="uid://xaqp0bgyfhvf" path="res://scripts/resources/NPCData.gd" id="2_bqi5c"]
+[ext_resource type="Script" uid="uid://c3rme2wpwg1ee" path="res://scripts/resources/TradeRule.gd" id="2_rpp74"]
 [ext_resource type="Resource" uid="uid://caf554xdf4kvg" path="res://resources/npcs/orion.tres" id="3_j0s6j"]
+[ext_resource type="Resource" uid="uid://cfpm75e27jdso" path="res://resources/rules/buy_normal_beginnerAdventurer.tres" id="3_ugsaf"]
 [ext_resource type="Resource" uid="uid://dogbif7s06t02" path="res://resources/npcs/testNewOneHandSwordman1.tres" id="4_62sv5"]
+[ext_resource type="Resource" uid="uid://bwxwwy7yxpxno" path="res://resources/rules/buy_normal_expertOneHandSwordman.tres" id="4_ryovi"]
 [ext_resource type="Resource" uid="uid://dwqwnwa0kk4up" path="res://resources/npcs/testOldOneHandSwordman1.tres" id="5_djmgf"]
+[ext_resource type="Resource" uid="uid://7o8qiv2qeknk" path="res://resources/rules/sell_normal_beginnerAdventurer.tres" id="5_fqf7q"]
 [ext_resource type="Resource" uid="uid://b71qa1r74nxov" path="res://resources/npcs/testOldWizard.tres" id="6_c27xk"]
+[ext_resource type="Resource" uid="uid://dlg6qrxkela5c" path="res://resources/rules/sell_normal_expertAdventurer.tres" id="6_y8rkn"]
+[ext_resource type="Resource" uid="uid://b4uag6k33ocgj" path="res://resources/rules/sell_rusty_sword_expertWizard.tres" id="7_1a8os"]
 
 [node name="NPCManager" type="Node"]
 script = ExtResource("1_5khbq")
+trade_rules = Array[ExtResource("2_rpp74")]([ExtResource("3_ugsaf"), ExtResource("4_ryovi"), ExtResource("5_fqf7q"), ExtResource("6_y8rkn"), ExtResource("7_1a8os")])
 npc_data_list = Array[ExtResource("2_bqi5c")]([ExtResource("3_j0s6j"), ExtResource("4_62sv5"), ExtResource("5_djmgf"), ExtResource("6_c27xk")])

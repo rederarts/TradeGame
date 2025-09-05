@@ -1,12 +1,36 @@
-[gd_resource type="Resource" script_class="NPCData" load_steps=2 format=3 uid="uid://caf554xdf4kvg"]
+[gd_resource type="Resource" script_class="NPCData" load_steps=3 format=3 uid="uid://caf554xdf4kvg"]
 
+[ext_resource type="Texture2D" uid="uid://nf3k3iqx41oh" path="res://assets/images/characters/オリオン（仮）.png" id="1_8ghpi"]
 [ext_resource type="Script" uid="uid://xaqp0bgyfhvf" path="res://scripts/resources/NPCData.gd" id="1_tj4ac"]
 
 [resource]
 script = ExtResource("1_tj4ac")
 npc_name = "オリオン"
+portrait = ExtResource("1_8ghpi")
 category_main = &"冒険者"
 category_sub = &"剣士"
 category_spec = &"片手剣"
 category_level = &"熟練"
+individual_sell_pool = Array[Dictionary]([{
+"appearance_chance": 0.1,
+"item_id": "res://resources/Items/rusty_sword.tres",
+"max_quantity": 12.0,
+"min_quantity": 3.0
+}, {
+"appearance_chance": 0.6,
+"item_id": "res://resources/Items/green_magic_stone.tres",
+"max_quantity": 12.0,
+"min_quantity": 2.0
+}, {
+"appearance_chance": 0.6,
+"item_id": "res://resources/Items/ancient_steel_on_handed_sword.tres",
+"max_quantity": 4.0,
+"min_quantity": 1.0
+}])
+individual_buy_pool = Array[Dictionary]([{
+"appearance_chance": 0.01,
+"item_id": "res://resources/Items/ancient_steel_on_handed_sword.tres",
+"max_quantity": 1.0,
+"min_quantity": 1.0
+}])
 metadata/_custom_type_script = "uid://xaqp0bgyfhvf"

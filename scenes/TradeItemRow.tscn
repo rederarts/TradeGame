@@ -1,15 +1,38 @@
-[gd_scene format=3 uid="uid://cpq3phg2yg2m5"]
+[gd_scene load_steps=3 format=3 uid="uid://cpq3phg2yg2m5"]
 
-[node name="TradeItemRow" type="HBoxContainer"]
+[ext_resource type="Texture2D" uid="uid://bn0c2v411qnul" path="res://assets/images/background/吹き出し（仮）(暗いバージョン).png" id="1_m68rl"]
 
-[node name="ItemNameLabel" type="Label" parent="."]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yxqfs"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 5.0
+content_margin_bottom = 15.0
+texture = ExtResource("1_m68rl")
+
+[node name="TradeItemRow" type="Button"]
+offset_right = 23.0
+offset_bottom = 23.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxTexture_yxqfs")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemNameLabel" type="Label" parent="HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.986752, 0.986752, 0.986752, 1)
+theme_override_constants/outline_size = 5
 
-[node name="QuantityLabel" type="Label" parent="."]
+[node name="QuantityLabel" type="Label" parent="HBoxContainer"]
 layout_mode = 2
-
-[node name="PriceLabel" type="Label" parent="."]
-layout_mode = 2
-
-[node name="TradeButton" type="Button" parent="."]
-layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.864675, 0.864675, 0.864675, 1)
+theme_override_constants/outline_size = 5

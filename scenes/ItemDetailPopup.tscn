@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://bt83l3eko0aw0"]
+
+[ext_resource type="Script" uid="uid://cvwmtnmlul3uc" path="res://scenes/ItemDetailPopup.gd" id="1_6ear6"]
+
+[node name="ItemDetailPopup" type="PanelContainer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -33.0
+offset_right = 22.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6ear6")
+
+[node name="DarkenOverlay" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.137255, 0.137255, 0.137255, 0.498039)
+
+[node name="ContentVBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ItemImage" type="TextureRect" parent="ContentVBox"]
+layout_mode = 2
+
+[node name="ItemDescriptionLabel" type="Label" parent="ContentVBox"]
+layout_mode = 2
+
+[node name="QuantitySelector" type="HBoxContainer" parent="ContentVBox"]
+layout_mode = 2
+
+[node name="MinusButton" type="Button" parent="ContentVBox/QuantitySelector"]
+layout_mode = 2
+
+[node name="QuantityLabel" type="Label" parent="ContentVBox/QuantitySelector"]
+layout_mode = 2
+
+[node name="PlusButton" type="Button" parent="ContentVBox/QuantitySelector"]
+layout_mode = 2
+
+[node name="ActionButtons" type="HBoxContainer" parent="ContentVBox"]
+layout_mode = 2
+
+[node name="ConfirmButton" type="Button" parent="ContentVBox/ActionButtons"]
+layout_mode = 2
+
+[node name="CancelButton" type="Button" parent="ContentVBox/ActionButtons"]
+layout_mode = 2
+
+[node name="AskButton" type="Button" parent="ContentVBox/ActionButtons"]
+layout_mode = 2
+
+[node name="WaitButton" type="Button" parent="ContentVBox/ActionButtons"]
+layout_mode = 2

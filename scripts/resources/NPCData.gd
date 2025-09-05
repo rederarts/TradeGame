@@ -13,3 +13,9 @@ class_name NPCData
 @export var category_sub: StringName = &"剣士"      # 中カテゴリ (役職)
 @export var category_spec: StringName = &"片手剣"   # 小カテゴリ (専門)
 @export var category_level: StringName = &"新米"    # 練度
+
+@export_group("Individual Settings (Overrides Rules)")
+# このNPCが必ず売ろうとするアイテムのリスト
+@export var individual_sell_pool: Array[Dictionary] = []
+# このNPCが必ず買おうとするアイテムのリスト
+@export var individual_buy_pool: Array[Dictionary] = []

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="TradeRule" load_steps=2 format=3 uid="uid://7o8qiv2qeknk"]
+
+[ext_resource type="Script" uid="uid://c3rme2wpwg1ee" path="res://scripts/resources/TradeRule.gd" id="1_kcx1g"]
+
+[resource]
+script = ExtResource("1_kcx1g")
+rule_name = "新米冒険者によるアイテム売却のルール"
+priority = 9
+conditions = Array[Dictionary]([{
+"type": "NPC_CATEGORY_MAIN",
+"value": "冒険者"
+}, {
+"type": "NPC_CATEGORY_LEVEL",
+"value": "新米"
+}])
+action_type = &"OFFER_TO_SELL"
+item_pool = Array[Dictionary]([{
+"appearance_chance": 0.95,
+"item_id": "res://resources/Items/rusty_sword.tres",
+"max_quantity": 10.0,
+"min_quantity": 2.0
+}, {
+"appearance_chance": 0.3,
+"item_id": "res://resources/Items/green_magic_stone.tres",
+"max_quantity": 4.0,
+"min_quantity": 1.0
+}, {
+"appearance_chance": 0.3,
+"item_id": "res://resources/Items/ancient_steel_on_handed_sword.tres",
+"max_quantity": 1.0,
+"min_quantity": 1.0
+}])
+metadata/_custom_type_script = "uid://c3rme2wpwg1ee"

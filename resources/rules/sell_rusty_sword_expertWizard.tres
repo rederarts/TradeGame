@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="TradeRule" load_steps=2 format=3 uid="uid://b4uag6k33ocgj"]
 
-[ext_resource type="Script" uid="uid://c3rme2wpwg1ee" path="res://scripts/resources/TradeRule.gd" id="1_t52b0"]
+[ext_resource type="Script" uid="uid://c3rme2wpwg1ee" path="res://scripts/resources/TradeRule.gd" id="1_crhxm"]
 
 [resource]
-script = ExtResource("1_t52b0")
-rule_name = "熟練冒険者の魔法使いの錆びた剣売却"
+script = ExtResource("1_crhxm")
+rule_name = "熟練冒険者の魔法使いによる錆びた剣売却のルール"
 priority = 30
 conditions = Array[Dictionary]([{
 "type": "NPC_CATEGORY_MAIN",
@@ -18,7 +18,9 @@ conditions = Array[Dictionary]([{
 }])
 action_type = &"OFFER_TO_SELL"
 item_pool = Array[Dictionary]([{
-"appearance_chance": "0.05",
-"item_id": "rusty_sword"
+"appearance_chance": 0.05,
+"item_id": "res://resources/Items/rusty_sword.tres",
+"max_quantity": 1.0,
+"min_quantity": 1.0
 }])
 metadata/_custom_type_script = "uid://c3rme2wpwg1ee"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b0t4jwggxulvc"]
+[gd_scene load_steps=11 format=3 uid="uid://b0t4jwggxulvc"]
 
 [ext_resource type="Script" uid="uid://cpy3jw50awmfe" path="res://scripts/scene_specific/UIManager.gd" id="1_dj8aq"]
 [ext_resource type="PackedScene" uid="uid://cpq3phg2yg2m5" path="res://scenes/TradeItemRow.tscn" id="2_ro3t7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cx0srexs06tg" path="res://assets/images/background/吹き出し（仮）.png" id="4_3wlde"]
 [ext_resource type="Texture2D" uid="uid://csm0j5ssl68rk" path="res://assets/images/characters/立ち絵NoImage（背景透過）.png" id="4_xpksx"]
 [ext_resource type="Texture2D" uid="uid://bn0c2v411qnul" path="res://assets/images/background/吹き出し（仮）(暗いバージョン).png" id="5_xpksx"]
+[ext_resource type="PackedScene" uid="uid://bt83l3eko0aw0" path="res://scenes/ItemDetailPopup.tscn" id="7_xpksx"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ukj8e"]
 texture = ExtResource("4_3wlde")
@@ -32,6 +33,17 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_75u2n")
 
+[node name="MoneyLabel" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 8.0
+offset_right = 335.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(0.886768, 0.63414, 0.298976, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "所持金××××G"
+
 [node name="VisitUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -55,6 +67,7 @@ offset_bottom = 640.0
 text = "取引を終える"
 
 [node name="MonologueWindow" type="TextureRect" parent="VisitUI"]
+visible = false
 layout_mode = 0
 offset_left = 146.0
 offset_top = 428.0
@@ -87,6 +100,7 @@ text = "ふん。たこ焼きなら年に一度どこからともなく現れる
 autowrap_mode = 2
 
 [node name="NPCDialogueWindow" type="TextureRect" parent="VisitUI"]
+visible = false
 layout_mode = 0
 offset_left = 30.0
 offset_top = 173.0
@@ -121,6 +135,7 @@ text = "どうも。鉄火丼が食べたくて来ました。
 autowrap_mode = 2
 
 [node name="TabBuyAndSell" type="TabContainer" parent="VisitUI"]
+custom_minimum_size = Vector2(467, 351)
 layout_mode = 0
 offset_left = 652.0
 offset_top = 33.0
@@ -140,26 +155,38 @@ metadata/_tab_index = 0
 
 [node name="Control" type="Control" parent="VisitUI/TabBuyAndSell/客が売りたいアイテムを確認する"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="VisitUI/TabBuyAndSell/客が売りたいアイテムを確認する/Control"]
 layout_mode = 2
 offset_left = 15.0
 offset_top = 28.0
 offset_right = 442.0
-offset_bottom = 64.0
+offset_bottom = 77.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-text = "お客さんが売りたいと思っているアイテム"
+text = "お客さんが売りたいと考えているアイテムを確認する
+"
 
 [node name="BuyItemScrollContainer" type="ScrollContainer" parent="VisitUI/TabBuyAndSell/客が売りたいアイテムを確認する/Control"]
 layout_mode = 0
 offset_left = 17.0
-offset_top = 61.0
+offset_top = 74.0
 offset_right = 447.0
 offset_bottom = 283.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VisitUI/TabBuyAndSell/客が売りたいアイテムを確認する/Control/BuyItemScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="EmptySellMessageLabel" type="Label" parent="VisitUI/TabBuyAndSell/客が売りたいアイテムを確認する/Control"]
+visible = false
+layout_mode = 0
+offset_left = 15.0
+offset_top = 65.0
+offset_right = 447.0
+offset_bottom = 276.0
 
 [node name="客が買いたいアイテムを確認する" type="VBoxContainer" parent="VisitUI/TabBuyAndSell"]
 layout_mode = 2
@@ -167,27 +194,38 @@ metadata/_tab_index = 1
 
 [node name="Control" type="Control" parent="VisitUI/TabBuyAndSell/客が買いたいアイテムを確認する"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="VisitUI/TabBuyAndSell/客が買いたいアイテムを確認する/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.043
-offset_left = 16.0
-offset_top = 26.0
-offset_right = 436.919
-offset_bottom = 71.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "お客さんが売りたいと考えているアイテムを確認する"
-
-[node name="SellScrollContainer" type="ScrollContainer" parent="VisitUI/TabBuyAndSell/客が買いたいアイテムを確認する/Control"]
-layout_mode = 0
+layout_mode = 2
 offset_left = 15.0
-offset_top = 53.0
-offset_right = 446.0
+offset_top = 28.0
+offset_right = 442.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+text = "お客さんが買いたいと考えているアイテムを確認する
+"
+
+[node name="SellItemScrollContainer" type="ScrollContainer" parent="VisitUI/TabBuyAndSell/客が買いたいアイテムを確認する/Control"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 74.0
+offset_right = 447.0
 offset_bottom = 283.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VisitUI/TabBuyAndSell/客が買いたいアイテムを確認する/Control/SellScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VisitUI/TabBuyAndSell/客が買いたいアイテムを確認する/Control/SellItemScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="EmptyBuyMessageLabel" type="Label" parent="VisitUI/TabBuyAndSell/客が買いたいアイテムを確認する/Control"]
+visible = false
+layout_mode = 0
+offset_left = 15.0
+offset_top = 65.0
+offset_right = 447.0
+offset_bottom = 276.0
 
 [node name="DayEndUI" type="Control" parent="."]
 layout_mode = 3
@@ -203,6 +241,8 @@ offset_top = 413.0
 offset_right = 681.0
 offset_bottom = 467.0
 text = "寝る"
+
+[node name="ItemDetailPopup" parent="." instance=ExtResource("7_xpksx")]
 
 [connection signal="pressed" from="VisitUI/EndTransactionButton" to="." method="_on_end_transaction_button_pressed"]
 [connection signal="pressed" from="DayEndUI/SleepButton" to="." method="_on_sleep_button_pressed"]
